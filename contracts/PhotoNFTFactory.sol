@@ -5,7 +5,7 @@ import { SafeMath } from "./openzeppelin-solidity/contracts/math/SafeMath.sol";
 import { Strings } from "./libraries/Strings.sol";
 import { PhotoNFTFactoryStorages } from "./photo-nft-factory/commons/PhotoNFTFactoryStorages.sol";
 import { PhotoNFT } from "./PhotoNFT.sol";
-import { PhotoNFTMarketplace } from "./PhotoNFTMarketplace.sol";
+import { PhotoNFTMarketplace } from "./PhotoNFTMarketPlace.sol";
 import { PhotoNFTData } from "./PhotoNFTData.sol";
 
 

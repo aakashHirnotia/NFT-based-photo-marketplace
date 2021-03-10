@@ -9,7 +9,8 @@
     "client": "cd client && npm run start",
     "console": "truffle console --network local",
     "migrate:local": "truffle migrate --reset --network local",
-    "migrate:ropsten": "truffle migrate --reset --network ropsten"
+    "migrate:ropsten": "truffle migrate --reset --network ropsten",
+    "migrate:gather": "truffle migrate --reset --network gather"
   },
   "repository": {
     "type": "git",
@@ -28,8 +29,8 @@
   },
   "homepage": "https://github.com/rrecuero/zepkit#readme",
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "@truffle/hdwallet-provider": "^1.2.0"
+    "@truffle/hdwallet-provider": "^1.2.0",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {}
 }

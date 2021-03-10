@@ -40,13 +40,13 @@ export default class MyPhotos extends Component {
     ///---------------------------------------------------------
     /// Functions put a photo NFT on sale or cancel it on sale 
     ///---------------------------------------------------------
-    putOnSale = async (e) => {
+    putOnSale = async (address) => {
         const { web3, accounts, photoNFTMarketplace, photoNFTData, PHOTO_NFT_MARKETPLACE } = this.state;
 
-        console.log('=== value of putOnSale ===', e.target.value);
+        console.log('=== value of putOnSale ===', address);
         console.log('=== PHOTO_NFT_MARKETPLACE ===', PHOTO_NFT_MARKETPLACE);
 
-        const PHOTO_NFT = e.target.value;
+        const PHOTO_NFT = address;
 
         /// Get instance by using created photoNFT address
         let PhotoNFT = {};
@@ -270,7 +270,7 @@ export default class MyPhotos extends Component {
                               <br />
 
                               { photo.status == "Cancelled" ? 
-                                  <Button size={'medium'} width={1} value={ photo.photoNFT } onClick={this.putOnSale}> Put on sale </Button>
+                                  <Button size={'medium'} width={1} value={ photo.photoNFT } onClick={() => this.putOnSale(photo.photoNFT)}> Put on sale </Button>
                               :
                                   <Button size={'medium'} width={1} value={ photo.photoNFT } onClick={this.cancelOnSale}> Cancel on sale </Button>
                               }

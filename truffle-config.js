@@ -5,6 +5,11 @@ const mnemonic = process.env.MNEMONIC;
 
 module.exports = {
   networks: {
+    gather: {
+      provider: () => new HDWalletProvider(mnemonic, `http://testnet.gather.network`),
+      port: 80,
+      network_id: "*",
+    },
     ropsten: {
       provider: () => new HDWalletProvider(mnemonic, 'https://ropsten.infura.io/v3/' + process.env.INFURA_KEY),
       network_id: '3',
