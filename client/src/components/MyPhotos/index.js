@@ -64,12 +64,12 @@ export default class MyPhotos extends Component {
         console.log('=== response of openTrade ===', txReceipt2);
     }
 
-    cancelOnSale = async (e) => {
+    cancelOnSale = async (address) => {
         const { web3, accounts, photoNFTMarketplace, photoNFTData, PHOTO_NFT_MARKETPLACE } = this.state;
 
-        console.log('=== value of cancelOnSale ===', e.target.value);
+        console.log('=== value of cancelOnSale ===', address);
 
-        const PHOTO_NFT = e.target.value;
+        const PHOTO_NFT = address;
 
         /// Get instance by using created photoNFT address
         let PhotoNFT = {};
@@ -272,7 +272,7 @@ export default class MyPhotos extends Component {
                               { photo.status == "Cancelled" ? 
                                   <Button size={'medium'} width={1} value={ photo.photoNFT } onClick={() => this.putOnSale(photo.photoNFT)}> Put on sale </Button>
                               :
-                                  <Button size={'medium'} width={1} value={ photo.photoNFT } onClick={this.cancelOnSale}> Cancel on sale </Button>
+                                  <Button size={'medium'} width={1} value={ photo.photoNFT } onClick={() => this.cancelOnSale(photo.photoNFT)}> Cancel on sale </Button>
                               }
 
                               <span style={{ padding: "5px" }}></span>

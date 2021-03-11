@@ -9,6 +9,8 @@ module.exports = {
       provider: () => new HDWalletProvider(mnemonic, `http://testnet.gather.network`),
       port: 80,
       network_id: "*",
+      gas: 4700000,
+      skipDryRun: true
     },
     ropsten: {
       provider: () => new HDWalletProvider(mnemonic, 'https://ropsten.infura.io/v3/' + process.env.INFURA_KEY),
