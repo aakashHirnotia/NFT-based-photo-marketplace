@@ -27,7 +27,10 @@ export default class Publish extends Component {
 
           /////// Ipfs Upload
           buffer: null,
-          ipfsHash: ''
+          ipfsHash: '',
+
+          //loading
+          loading: false
         };
 
         /////// Handle
@@ -77,7 +80,7 @@ export default class Publish extends Component {
         const { web3, accounts, photoNFTFactory, photoNFTMarketplace, PHOTO_NFT_MARKETPLACE, valueNFTName, valueNFTSymbol, valuePhotoPrice } = this.state;
 
         event.preventDefault()
-
+        this.setState({loading: true});
         ipfs.files.add(this.state.buffer, (error, result) => {
           // In case of fail to upload to IPFS
           if (error) {
@@ -126,6 +129,10 @@ export default class Publish extends Component {
             photoNFT.methods.approve(PHOTO_NFT_MARKETPLACE, photoId).send({ from: accounts[0] }).once('receipt', (receipt) => {
                 /// Put on sale (by a seller who is also called as owner)
                 photoNFTMarketplace.methods.openTradeWhenCreateNewPhotoNFT(PHOTO_NFT, photoId, photoPrice).send({ from: accounts[0] }).once('receipt', (receipt) => {})
+            })
+            .then(()=>{
+              console.log("Publised it successfully");
+              this.setState({loading: false});
             })
           })
         })
@@ -269,8 +276,10 @@ export default class Publish extends Component {
                         >
                             <h2>Publish and Put on Sale</h2>
                             <p>Please upload your photo and put on sale from here!</p>
-
-                            <Form onSubmit={this.onSubmit}>
+                            {this.state.loading==true ?
+                              <div style={{textAlign: "center"}}>Loading...</div>
+                              :
+                              <Form onSubmit={this.onSubmit}>
                                 <Field label="Photo NFT Name">
                                     <Input
                                         type="text"
@@ -315,7 +324,8 @@ export default class Publish extends Component {
                                 </Field>
 
                                 <Button size={'medium'} width={1} type='submit'>Upload my photo and put on sale</Button>
-                            </Form>
+                              </Form>
+                            }
                         </Card>
                     </Grid>
 
